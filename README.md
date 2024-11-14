@@ -1,9 +1,9 @@
 # EBC Method
 
-## 项目简介
-该项目实现了基于网络圈基的边攻击方法，主要用于复杂网络的鲁棒性分析。代码使用 NetworkX 库计算每条边在圈基中的参与度，排序后移除边，以分析网络在边攻击下的鲁棒性。
+## Project profile
+This project implements an edge attack method based on network cycle, which is mainly used to analyze the robustness of complex networks. The code uses NetworkX library to calculate the participation of each edge in the cycle base, and then removes the edge after sorting to analyze the robustness of the network under edge attacks.
 
-## 依赖环境
+## Dependent environment
 - **Python 3.x**
-- **NetworkX**：用于处理图的操作
-- **Pandas**：用于数据读取和处理
+- **NetworkX**：Operations used to process graphs
+- **Pandas**：Used for data reading and processing
