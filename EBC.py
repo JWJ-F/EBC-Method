@@ -8,10 +8,10 @@ import sys
 
 
 
-# ==============圈基====================
+# ==============Cycle base====================
 def attack_cycles_for_edge(graph):
 
-    # 计算每条边参与的圈基数量
+    # Calculate the number of cycles that each edge participates in
     edge_cycle_counts = {}
     for edge in graph.edges():
         edge_cycle_counts[edge] = 0
@@ -26,7 +26,7 @@ def attack_cycles_for_edge(graph):
             elif edge2 in edge_cycle_counts.keys():
                 edge_cycle_counts[edge2] = edge_cycle_counts[edge2] + 1
 
-    # 按照参与圈基数量从大到小排序
+    # Order the number of participating cycles from largest to smallest
     sorted_edges = sorted(edge_cycle_counts.items(), key=lambda x: x[1], reverse=True)
 
     # data_list = []
@@ -77,7 +77,7 @@ def readCSV2(csv_file_path):
 
     data = pd.read_csv(csv_file_path)
 
-    # 将前两列数据添加为图的边
+    # Add the first two columns of data as the edges of the graph
     edges = zip(data.iloc[:, 0], data.iloc[:, 1])
 
     return edges
@@ -90,9 +90,9 @@ def saveTxt1(count_list, OutputAddress):
                 f.writelines(data)
 
 def saveTxtRobustness(outputRobustnessAddress, dataStr):
-    # 打开文件以追加内容
+    # Open the file to append content
     with open(outputRobustnessAddress, 'a') as file:
-        # 写入新的内容
+        # Write new content
         file.write(dataStr+'\n')
 
 def readNet(filename):
@@ -114,7 +114,7 @@ def iterAttack(G0, file_name, outputRobustnessAddress, outputAddress):
         G1 = copy.deepcopy(G0)
         newOutputAddress = outputAddress + pointer_name[i] + '\\' + file_name + "_attack.txt"
         newOutputRobustnessAddress = outputRobustnessAddress + pointer_name[i] + "_robustness.txt"
-        if i == 0:# 圈基
+        if i == 0:# 
             data_list = attack_cycles_for_edge(G1)
 
         robustness = sum(data_list) / len(data_list)
@@ -142,20 +142,20 @@ for i in range(len(txt_files)):#  len(txt_files)  #
 
     txt_file = txt_files[i]
     G0 = readNet(txt_file)
-    # 去除不联通的分支
+    # Remove disconnected branches
     node_num = float(G0.number_of_nodes())
     largest_component = max(nx.connected_components(G0), key=len)
     if len(largest_component) < node_num:
         G0 = G0.subgraph(largest_component).copy()
-    # 去除自环
+    # decyclic
     G0.remove_edges_from(nx.selfloop_edges(G0))
     file_name = os.path.basename(txt_file.split('.')[0])
 
-    print(f"({i})============{file_name}:开始")
+    print(f"({i})============{file_name}:Begin")
     iterAttack(G0, file_name, outputRobustnessAddress, outputAddress)
     # files.append(file_name)
 
-    print(f"============{file_name}:结束")
+    print(f"============{file_name}:End")
     print("=======================================")
 
 
