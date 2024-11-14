@@ -5,5 +5,5 @@ This project implements a method for identifying critical edges in complex netwo
 
 ## Dependent environment
 - **Python 3.x**
-- NetworkX: Operations used to process graphs
+- **NetworkX**: Operations used to process graphs
 
