@@ -1,10 +1,16 @@
+'''
+============================================================================
+ Name        : Identifying vital edges based on the cycle structure in
+               complex networks
+ Author      : Wenjun Jiang (jiangwj9@mail2.sysu.edu.cn)
+ Description : An algorithm for EBC
+ 
+ Copyright (C) 2024 by Wenjun Jiang. All rights reserved.
+ ============================================================================
+'''
+
 import networkx as nx
-import glob
-import os
-import copy
-import pandas as pd
-from math import sqrt
-import sys
+
 
 def EBC(graph):
     # Calculate the number of cycles that each edge participates in
